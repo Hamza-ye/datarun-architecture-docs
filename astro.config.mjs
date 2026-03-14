@@ -3,6 +3,8 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://Hamza-ye.github.io',
+	base: '/datarun-architecture-docs',
 	integrations: [
 		starlight({
 			title: 'Datarun Architecture Docs',
