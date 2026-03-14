@@ -49,7 +49,7 @@ Key patterns in use:
 |--------|-------------|--------|
 | **Flutter Mobile App** (Dart) | V1 API consumer, offline-first | ✅ Operational |
 | **Web Frontend** (Angular) | V2 API consumer | 📋 Architecture defined, not yet built |
-| **Downstream Consumers** (LMIS, Analytics, etc.) | Receive events via Gateway | 💡 Conceptual — see [/_ideas/](/_ideas/) |
+| **Downstream Consumers** (LMIS, Analytics, etc.) | Receive events via Gateway | 💡 Conceptual — see [_ideas/](../_ideas/) |
 
 ## What This System Is NOT
 

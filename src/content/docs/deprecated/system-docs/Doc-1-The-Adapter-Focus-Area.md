@@ -214,7 +214,7 @@ title: Doc 1 The Adapter Focus Area
 }
 
 ```
-**[Check out a sample source events and their mapping Examples](/system-docs/adapter-source-events-examples/about_samples.md)**
+**[Check out a sample source events and their mapping Examples](../adapter-source-events-examples/about_samples.md)**
 
 ### Why this DSL Design is Battle-Tested
 
