@@ -1,8 +1,6 @@
 ---
-title: Doc 4 The Ledger Area C Immutable Event Store
+title: "Area C: Immutable Event Store"
 ---
-
-# Area C: The Immutable Event Store
 
 This table stores "Facts." Once a row is written here, it is never updated or deleted. If a mistake was made, a **REVERSAL** event is added instead.
 
@@ -24,7 +22,6 @@ This table stores "Facts." Once a row is written here, it is never updated or de
 *(Note: `batch_id` and `expiry_date` tracking are deferred for post-MVP enhancements).*
 
 ---
-title: Doc 4 The Ledger Area C Immutable Event Store
 
 ### Area C: The Stock Projection (Read Model)
 
@@ -43,7 +40,6 @@ Querying the `inventory_events` table to find the current balance of 500 items a
 | `last_updated` | `Timestamp` | Last time the balance changed. |
 
 ---
-title: Doc 4 The Ledger Area C Immutable Event Store
 
 ### Preventing Race Conditions (Optimistic Concurrency Control)
 
@@ -59,7 +55,6 @@ In a high-throughput system, it is possible for two commands affecting the *same
 5. **The Retry:** The Ledger detects that 0 rows were updated, throwing a `StaleObjectException`. It briefly pauses, re-reads the new state (`version 6`), performs the math again, and successfully commits to `version 7`.
 
 ---
-title: Doc 4 The Ledger Area C Immutable Event Store
 
 ### The "Absolute Reset" Logic (Stock-Take)
 
@@ -82,7 +77,6 @@ In this case:
 5. **The Projection Update:** The `stock_balances` table is updated to `100`.
 
 ---
-title: Doc 4 The Ledger Area C Immutable Event Store
 
 ### Handling Reversals (The "Correction" Flow)
 
@@ -94,7 +88,6 @@ If **Area B** detects an edit to a previous form (e.g., the user changed a "Rece
 4. Update Projection: The net result on the balance is a simple .
 
 ---
-title: Doc 4 The Ledger Area C Immutable Event Store
 
 ### Business Rules (Enforcement)
 
@@ -104,7 +97,6 @@ During the "Commit" to Area C, the Ledger evaluates the **Configuration Hierarch
 * **Expiry Check:** If a `RECEIPT` has an `expiry_date` in the past, the Ledger rejects it.
 
 ---
-title: Doc 4 The Ledger Area C Immutable Event Store
 
 ### Summary of Area C Integrity
 

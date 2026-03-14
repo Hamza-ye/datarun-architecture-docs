@@ -1,8 +1,6 @@
 ---
-title: Spa Architecture
+title: SPA Architecture
 ---
-
-# Frontend Architecture
 
 ## Overview
 
@@ -12,7 +10,6 @@ The frontend is built as **multiple standalone applications**, one per Bounded C
 > Each frontend app is an independent codebase. The LMIS SPA calls BFF endpoints for composed reads and domain BC endpoints directly for single-BC operations and writes. No frontend may import another BC's backend code.
 
 ---
-title: Spa Architecture
 
 ## 1. Multi-App Strategy
 
@@ -52,7 +49,6 @@ When there are 3+ frontends and the cross-linking UX becomes insufficient, add a
 **Do not build this until cross-linking is insufficient.** It adds significant build complexity.
 
 ---
-title: Spa Architecture
 
 ## 2. LMIS SPA — Angular 19+ Architecture
 
@@ -114,7 +110,6 @@ Build in isolated, vertical slivers:
 This preserves the ability to revert changes without destroying adjacent domains.
 
 ---
-title: Spa Architecture
 
 ## Related Docs
 

@@ -1,13 +1,10 @@
 ---
-title: Doc 6 The Shared Kernel And Registries
+title: "Area F: Shared Kernel"
 ---
-
-# Area F: The Shared Kernel (Registries & Truth)
 
 The "Shared Kernel" is the central nervous system of the Modular Monolith. It provides the immutable definitions and registries used by the Ledger's sub-modules (Areas B, C, D, E). Because the Ledger relies on strict mathematical rules, the definitions it uses must be unambiguous and historically accurate.
 
 ---
-title: Doc 6 The Shared Kernel And Registries
 
 ## 1. The Supply Node Registry (Topology)
 
@@ -29,7 +26,6 @@ To prevent this, the Ledger models Nodes using **Slowly Changing Dimensions (Typ
 **Rule:** When Area E evaluates the Approval Policy for a transaction that occurred on `2025-06-15`, it joins against `node_hierarchy` where `'2025-06-15' BETWEEN valid_from AND valid_to`. This guarantees temporal accuracy.
 
 ---
-title: Doc 6 The Shared Kernel And Registries
 
 ## 2. The Commodity Registry (Immutability Invariant)
 
@@ -55,7 +51,6 @@ If the Ministry decides a "Box of Paracetamol" is now 50 tablets instead of 100,
 | `PKG-050` | `PARAM-01` | `BOX_50` | `50` | `ACTIVE` |
 
 ---
-title: Doc 6 The Shared Kernel And Registries
 
 ## 3. The Policy Engine (Configuration as Data)
 

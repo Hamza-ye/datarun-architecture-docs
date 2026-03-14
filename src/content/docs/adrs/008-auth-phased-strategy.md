@@ -1,10 +1,8 @@
 ---
-title: 008 Auth Phased Strategy
+title: "ADR-008: Auth Phased Strategy"
 ---
 
-# ADR-008: Authentication — Phased Strategy
-
-> **⚠️ LMIS Platform ADR:** This decision was written for a planned LMIS platform (Python/FastAPI) that has not been implemented. The **identity vs. authorization split** and **JWKS-based SSO** concepts are broadly applicable and inform `datarunapi`'s auth strategy. LMIS-specific details (`lmis_user_permissions`, `ActorContext`) are conceptual only.
+> **⚠️ LMIS Platform ADR:** This decision was written for a planned downstream LMIS platform (Python/FastAPI) that has not been implemented. It may inform future architecture but does **not** constrain the current `datarunapi` (Java/Spring Boot) codebase. The **identity vs. authorization split** and **JWKS-based SSO** concepts are broadly applicable and inform `datarunapi`'s auth strategy. LMIS-specific details (`lmis_user_permissions`, `ActorContext`) are conceptual only.
 
 **Status:** Accepted (Revised)
 **Date:** 2026-03-03
@@ -76,4 +74,4 @@ Deploy Keycloak (or equivalent). Both DatarunAPI and LMIS become relying parties
 
 - [Auth & Authorization](../architecture/auth-and-authorization.md)
 - [Context Map](../architecture/context-map.md)
-- [Integration Contract — DatarunAPI](../architecture/integration-contract-datarunapi.md)
+- [Integration Contract — DatarunAPI](../deprecated/legacy-technical-adapter-contract.md)

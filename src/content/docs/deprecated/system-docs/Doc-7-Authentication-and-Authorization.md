@@ -1,15 +1,12 @@
 ---
-title: Doc 7 Authentication And Authorization
+title: Auth & Authorization (Legacy)
 ---
-
-# Arch-Doc 7: Decoupled Authentication & Authorization
 
 Authentication is the number one reason "decoupled" systems accidentally become tightly coupled. If the Adapter and the Ledger share a `users` table, or if the Ledger needs to call the Adapter to ask "is this user allowed?", the architectural boundary is destroyed.
 
 This document outlines the battle-tested, standard approach for keeping Authentication (Identity) and Authorization (Access) clean, scalable, and perfectly separated in a Modular Monolith.
 
 ---
-title: Doc 7 Authentication And Authorization
 
 ## 1. Authentication (Identity: "Who are you?")
 
@@ -26,7 +23,6 @@ Authentication is entirely outsourced to a dedicated **Identity Provider (IdP)**
 Neither the Adapter nor the Ledger needs to query a database to know who the user is. The proof of identity is cryptographically baked into the token itself.
 
 ---
-title: Doc 7 Authentication And Authorization
 
 ## 2. Authorization (Access: "What can you do?")
 
@@ -64,7 +60,6 @@ When Area E (Gatekeeper) processes an approval, the logic looks like this:
 4. If yes, proceed. If no, `403 Forbidden`.
 
 ---
-title: Doc 7 Authentication And Authorization
 
 ## 3. The Implementation Strategy
 

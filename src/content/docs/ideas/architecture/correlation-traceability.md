@@ -1,15 +1,12 @@
 ---
-title: Correlation Traceability
+title: Correlation & Traceability
 ---
-
-# Correlation & Traceability
 
 ## Purpose
 
 This document defines how every piece of data is **traceable end-to-end** — from a field worker tapping "Submit" on a mobile device, through the Adapter pipeline, into the Ledger's immutable Event Store, and back again for auditing or error correction. Every hand-off between Bounded Contexts carries explicit correlation identifiers so that no event is ever orphaned or unexplainable.
 
 ---
-title: Correlation Traceability
 
 ## The ID Chain
 
@@ -25,7 +22,6 @@ Three identifiers thread through the entire system. Together they provide full t
 > `source_event_id` and `correlation_id` serve **different** purposes. `source_event_id` is the business identity of a submission (cross-BC, used for dedup). `correlation_id` is the Adapter's operational lineage tracker (Adapter-internal, groups retries).
 
 ---
-title: Correlation Traceability
 
 ## End-to-End Trace Path
 
@@ -76,7 +72,6 @@ title: Correlation Traceability
 ```
 
 ---
-title: Correlation Traceability
 
 ## Adapter Traceability Detail
 
@@ -118,7 +113,6 @@ The stored version is **immutable**. Historical events must always be traceable 
 | `retry_count` | Number of delivery attempts |
 
 ---
-title: Correlation Traceability
 
 ## Replay Lineage (Adapter DLQ → Retry Chain)
 
@@ -146,7 +140,6 @@ This creates an unbounded, traceable chain: any item can be traced backward thro
 > See [DLQ and Replay](../adapter/dlq-and-replay.md) for full replay logic.
 
 ---
-title: Correlation Traceability
 
 ## Ledger Traceability Detail
 
@@ -183,7 +176,6 @@ The In-Transit Registry uses `transfer_id` to link **Dispatch** and **Receipt** 
 ```
 
 ---
-title: Correlation Traceability
 
 ## Request-Level Observability: `X-Correlation-ID`
 
@@ -198,7 +190,6 @@ The `X-Correlation-ID` header is a **cross-cutting concern** managed by FastAPI 
 > `X-Correlation-ID` is middleware, not domain logic. Auth validation, `ActorContext` enrichment, `X-Correlation-ID` injection, and error formatting are applied identically to all routes (BFF, Ledger, Adapter). See [Composition Overview](../composition/composition-overview.md).
 
 ---
-title: Correlation Traceability
 
 ## Traceability Invariants
 
@@ -210,7 +201,6 @@ title: Correlation Traceability
 6. **Cross-BC join is explicit.** The Adapter → Ledger boundary is joined exclusively on `source_event_id`. No hidden coupling.
 
 ---
-title: Correlation Traceability
 
 ## Related Docs
 

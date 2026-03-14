@@ -1,10 +1,9 @@
 ---
-title: 010 Evolutionary Architecture
+title: "ADR-010: Evolutionary Architecture"
 ---
 
-# ADR-010: Evolutionary Architecture — Configuration Isolation Strategy
-
-> **Status:** Accepted
+## Status
+Accepted
 > **Date:** 2026-03-12
 > **Scope:** Cross-cutting — all Bounded Contexts
 > **Supersedes:** The "Not multi-tenant" constraint in `system-overview.md` (line 64)
@@ -19,7 +18,7 @@ The solution is not to implement full SaaS multi-tenancy (which would be prematu
 
 ## Decision
 
-1. **Adopt Evolutionary Architecture** as the primary design strategy. Protect fitness functions (see [Governance Charter](../governance/)); allow everything else to change.
+1. **Adopt Evolutionary Architecture** as the primary design strategy. Protect fitness functions (see [Governance Charter](../governance/index.md)); allow everything else to change.
 
 2. **Reframe the multi-tenant constraint**: The system is **not multi-tenant**. It is **configuration-isolation-ready**. This means:
    - Configurations (templates, assignments, policies) should be able to coexist without interfering

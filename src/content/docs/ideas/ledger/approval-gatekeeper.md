@@ -2,8 +2,6 @@
 title: Approval Gatekeeper
 ---
 
-# Approval Gatekeeper (Area E)
-
 ## Purpose
 
 Intercepts high-impact commands and holds them in a "Staged" state until authorized by a designated role. If the Idempotency Guard says "This is new," the Gatekeeper evaluates the Approval Policy.

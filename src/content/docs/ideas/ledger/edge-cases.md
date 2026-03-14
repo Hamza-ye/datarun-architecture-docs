@@ -1,8 +1,6 @@
 ---
-title: Edge Cases
+title: Ledger Edge Cases
 ---
-
-# Ledger Edge Cases & Failure Survivability
 
 ## 1. Idempotency Guard — Duplicate Submission Storm
 
@@ -15,7 +13,6 @@ title: Edge Cases
 **Recovery:** If a client re-uses an old ID for a brand-new transaction (client-side bug), the system rejects it as a duplicate. The client must generate a new UUID. The Ledger's integrity is never compromised.
 
 ---
-title: Edge Cases
 
 ## 2. Approval Gatekeeper — Policy Drift
 
@@ -28,7 +25,6 @@ title: Edge Cases
 **Recovery:** If a transaction is accidentally approved, it flushes into the Event Store. To correct it, the system requires a symmetrical `REVERSAL` linked to the offending `source_event_id`. History shows: Staged → Approved → Reversal applied.
 
 ---
-title: Edge Cases
 
 ## 3. Event Store — Concurrent Balance Corruption
 
@@ -41,7 +37,6 @@ title: Edge Cases
 **Recovery:** If a bug allowed a negative balance, we append a corrective `ADJUSTMENT` event to restore a known-good state, documenting the reason in metadata. Never `UPDATE` a past event.
 
 ---
-title: Edge Cases
 
 ## 4. In-Transit Registry — Double Receipt / Lost Shipment
 

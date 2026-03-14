@@ -1,8 +1,6 @@
 ---
-title: Overview
+title: Datarun API V2 Strategy
 ---
-
-# DataRun API V2 Strategy & Architecture Overview
 
 > **Status:** Draft  
 > **Audience:** Backend, Frontend, and Mobile Teams
@@ -42,7 +40,6 @@ The architecture defines strict event boundaries to dispatch data to other syste
 - **The Application Gateway** acts as the Integration Bounded Context. It reads the Outbox, handles Configurable Idempotency, performs JSON payload mapping, and guarantees delivery (with exponential backoff) of versioned Data Contracts to the outside world.
 
 ---
-title: Overview
 
 ### In Summary
 **V2 defines the long-term, stable external contract.** It serves as a protective shell isolating API consumers from legacy structures. Moving forward, the internal implementation (services, persistence, eventing) will evolve iteratively, comfortably hidden behind that pristine boundary.

@@ -2,8 +2,6 @@
 title: Policy Engine
 ---
 
-# Policy Engine (Configuration as Data)
-
 ## Purpose
 
 The Idempotency Guard, Approval Gatekeeper, and In-Transit Registry rely on business rules that change over time. These rules live in database tables, not in Python code.

@@ -1,8 +1,6 @@
 ---
-title: Migration_notes_3_layer
+title: Alembic Migration Guide
 ---
-
-# Advanced Guide for 3-Layer Alembic Migration
 
 The proposed changes in engine.py include significant state and constraints manipulations. When generating the Alembic migration, the following manual adjustments might be required for the automatically generated script.
 

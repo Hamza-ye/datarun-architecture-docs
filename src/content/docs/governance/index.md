@@ -1,15 +1,12 @@
 ---
-title: Overview
+title: Living Architecture Charter
 ---
-
-# Living Architecture Charter
 
 > **Status:** Active
 > **Ground Truth:** The `datarunapi` codebase is the single source of truth.
 > All documentation is **disposable guidance** — a living draft that can be rewritten when the code reality changes.
 
 ---
-title: Overview
 
 ## Purpose
 
@@ -19,7 +16,6 @@ This charter governs how architectural knowledge is captured, communicated, and 
 2. **The human architect/developer** (needs strategic coherence and decision traceability)
 
 ---
-title: Overview
 
 ## Documentation Principles
 
@@ -50,7 +46,6 @@ No document is sacred. Any doc can be rewritten or deleted if the code reality h
 | **BC-Specific** | Per-bounded-context schemas, contracts, edge cases | `docs/{adapter,ledger,kernel,...}/` | High — tracks code changes |
 
 ---
-title: Overview
 
 ## Fitness Functions
 
@@ -70,7 +65,6 @@ Fitness functions are **invariants that must hold** across all evolutionary chan
 > When writing an ADR or RFC, reference fitness functions by ID (e.g., "This change preserves **FF-03** and strengthens **FF-06**").
 
 ---
-title: Overview
 
 ## ADR Process
 
@@ -92,7 +86,6 @@ title: Overview
 4. Use the [ADR Template](adr-template.md)
 
 ---
-title: Overview
 
 ## RFC Process
 
@@ -110,7 +103,6 @@ title: Overview
 See [RFC Process](rfc-process.md) for full details and [RFC Template](rfc-template.md).
 
 ---
-title: Overview
 
 ## Review Cadence
 
@@ -122,7 +114,6 @@ title: Overview
 | **Quarterly** | Audit fitness function table — add/retire as needed |
 
 ---
-title: Overview
 
 ## Related Docs
 
@@ -130,4 +121,4 @@ title: Overview
 - [RFC Template](rfc-template.md)
 - [RFC Process](rfc-process.md)
 - [Strategic Blueprint](../architecture/strategic-blueprint.md)
-- [Documentation Index](../README.md)
+- [Documentation Index](../index.md)

@@ -1,14 +1,11 @@
 ---
-title: Doc 0 The System Overall Architecture Blueprint
+title: Overall Architecture Blueprint
 ---
-
-# The system Architecture Blueprint
 This is supposed to be a professional, architecture-grade blueprint based on battle-tested public health logistics and Event-Driven Architecture for the system and its parts we intended to implement here.
 
 Here is your end-to-end high level framework, stripped of fluff and focused on execution.
 
 ---
-title: Doc 0 The System Overall Architecture Blueprint
 
 ### 1. Battle-Tested Strategies for Append-Only Ledgers
 
@@ -21,7 +18,6 @@ Professional supply chain systems rely on specific, proven patterns to maintain 
 * **Canonical Base Units (Smallest Accounting Unit):** All ledger mathematics occur exclusively in the smallest dispensable unit (e.g., individual tablets, not boxes) to entirely eliminate floating-point rounding errors.
 
 ---
-title: Doc 0 The System Overall Architecture Blueprint
 
 ### 2. Areas of Focus (The Blueprint)
 
@@ -55,7 +51,6 @@ title: Doc 0 The System Overall Architecture Blueprint
 * **Responsibility:** Ensures that when a Client Command specifies `Item_A`, the Ledger knows exactly what that means mathematically.
 
 ---
-title: Doc 0 The System Overall Architecture Blueprint
 
 #### Area C: Core Accounting & Projection (The Ledger)
 
@@ -68,7 +63,6 @@ title: Doc 0 The System Overall Architecture Blueprint
 *(For detailed execution flow on the Absolute Reset math for Stock Counts and Concurrency, see [**Doc-4: Area C**](Doc-4-The-Ledger-Area-C-Immutable-Event-Store.md))*
 
 ---
-title: Doc 0 The System Overall Architecture Blueprint
 
 #### Area D: Orchestration & In-Transit Workflow (The Ledger)
 Handling the "Push" logistics requires parking the stock in a virtual space so it doesn't artificially inflate the destination's balance before it physically arrives.
@@ -82,7 +76,6 @@ Handling the "Push" logistics requires parking the stock in a virtual space so i
 *(For detailed execution flow on Orchestration and Auto-Receipt Cron Jobs, see [**Doc-5: Area D**](Doc-5-The-Ledger-Area-D-In-Transit-Registry.md))*
 
 ---
-title: Doc 0 The System Overall Architecture Blueprint
 
 ### 3. Responsibility Split: Client vs. Ledger
 
@@ -95,7 +88,6 @@ title: Doc 0 The System Overall Architecture Blueprint
 | **Edits/Deletes** | Detects updates and forwards a command | Executes the Compensating Transaction math |
 
 ---
-title: Doc 0 The System Overall Architecture Blueprint
 
 ### 4. Configuration Hierarchy (Global  Local)
 
@@ -127,7 +119,6 @@ The system respects the global default (`FALSE`) without needing to configure a 
 
 
 ---
-title: Doc 0 The System Overall Architecture Blueprint
 
 ## NEW LATE ADDED focus area, the approval Area:
 
@@ -178,7 +169,6 @@ With Area E included, the journey of a Command changes from a direct line to a g
 
 
 ---
-title: Doc 0 The System Overall Architecture Blueprint
 
 ### 4. Canonical Transaction Types
 
@@ -194,7 +184,6 @@ To maintain industry compatibility (GS1/OpenLMIS standards), the Ledger will onl
 | **REVERSAL** | The "Undo" part of a compensating transaction. | `(Opposite) of original event` |
 
 ---
-title: Doc 0 The System Overall Architecture Blueprint
 
 ### 5. Revised Prioritized Starting Point
 

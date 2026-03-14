@@ -1,8 +1,6 @@
 ---
-title: Dlq And Replay
+title: DLQ and Replay
 ---
-
-# DLQ and Replay
 
 ## Overview
 

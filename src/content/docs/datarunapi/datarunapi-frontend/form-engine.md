@@ -1,15 +1,12 @@
 ---
-title: Form Engine
+title: Form Engine Contract
 ---
-
-# Headless Form Engine — Contract & Design
 
 > **Status:** Source of Truth  
 > **Last updated:** 2026-03-05  
 > **Audience:** Frontend developer building the Data Capture module
 
 ---
-title: Form Engine
 
 ## 1. What the Form Engine Is
 
@@ -32,7 +29,6 @@ The engine has **no Angular imports, no HTTP calls, no DOM access**. Angular com
 | Transform legacy templates | Backend concern | DatarunAPI's Template Transformer (HashMap Registry) |
 
 ---
-title: Form Engine
 
 ## 2. V2 Data Shapes (What the Engine Manages)
 
@@ -45,15 +41,15 @@ interface V2Submission {
   submission_uid: string;
   template_uid: string;
   version_number: number;
-  values: Record<string, unknown>;          / flat singletons
-  collections: Record<string, CollectionMap>; / identity-keyed repeater rows
+  values: Record<string, unknown>;          // flat singletons
+  collections: Record<string, CollectionMap>; // identity-keyed repeater rows
 }
 
 type CollectionMap = Record<string, CollectionRow>;
 
 interface CollectionRow {
-  _parent_id?: string;   / set only for nested repeaters
-  _index?: number;       / optional, UI sort hint only
+  _parent_id?: string;   // set only for nested repeaters
+  _index?: number;       // optional, UI sort hint only
   [fieldBinding: string]: unknown;
 }
 ```
@@ -88,53 +84,52 @@ The backend's V2 template endpoint returns a tree of nodes:
 
 ```typescript
 interface TemplateTree {
-  node_id: string;         / "root" for the top level
+  node_id: string;         // "root" for the top level
   children: TreeNode[];
 }
 
 interface TreeNode {
-  node_id: string;         / unique within the tree
-  type: NodeType;          / determines UI widget
-  binding: string;         / key in `values` or `collections`
-  label?: Record<string, string>;  / localized labels
+  node_id: string;         // unique within the tree
+  type: NodeType;          // determines UI widget
+  binding: string;         // key in `values` or `collections`
+  label?: Record<string, string>;  // localized labels
   mandatory?: boolean;
-  option_set?: string;     / UID of the option set
-  rules?: Rule[];          / behavior rules
+  option_set?: string;     // UID of the option set
+  rules?: Rule[];          // behavior rules
   validation?: ValidationRule;
-  children?: TreeNode[];   / nested nodes (sections, repeaters)
+  children?: TreeNode[];   // nested nodes (sections, repeaters)
 }
 
 type NodeType =
-  | 'section'        / visual grouping (no data)
-  | 'repeater'       / collection container
+  | 'section'        // visual grouping (no data)
+  | 'repeater'       // collection container
   | 'Text' | 'Number' | 'Date' | 'Age'
   | 'SelectOne' | 'SelectMulti'
   | 'YesNo' | 'FullName'
   | 'IntegerPositive'
-  / ... extensible
+  // ... extensible
 ```
 
 **Key rule:** A node with `type: 'section'` has NO `binding` in the submission data. It's visual-only. A node with `type: 'repeater'` has a `binding` that maps to a key in `collections`.
 
 ---
-title: Form Engine
 
 ## 3. Public API
 
 ```typescript
 interface FormEngine {
-  / ── Lifecycle ───────────────────────────────────────────────
+  // ── Lifecycle ───────────────────────────────────────────────
   /** Initialize with a template tree. Optionally hydrate from an existing submission. */
   initialize(tree: TemplateTree, existing?: V2Submission): void;
 
   /** Tear down — release subscriptions, clear state. */
   destroy(): void;
 
-  / ── Singleton value reads/writes ────────────────────────────
+  // ── Singleton value reads/writes ────────────────────────────
   getValue(binding: string): unknown;
   setValue(binding: string, value: unknown): void;
 
-  / ── Collection reads/writes ─────────────────────────────────
+  // ── Collection reads/writes ─────────────────────────────────
   /** Get a single row by collection name and row ID. */
   getRow(collection: string, rowId: string): CollectionRow;
 
@@ -150,18 +145,18 @@ interface FormEngine {
   /** Remove a row and all its children (cascading for nested repeaters). */
   removeRow(collection: string, rowId: string): void;
 
-  / ── Node UI state (rule evaluation results) ─────────────────
+  // ── Node UI state (rule evaluation results) ─────────────────
   /** Get computed UI state for a specific node. */
   getNodeState(nodeId: string): NodeUIState;
 
-  / ── Observables ─────────────────────────────────────────────
+  // ── Observables ─────────────────────────────────────────────
   /** Emits on any value/collection change. */
   stateChange$: Observable<StateChangeEvent>;
 
   /** Emits when rule evaluation changes a node's visibility/required/disabled. */
   nodeStateChange$: Observable<NodeUIStateChange>;
 
-  / ── Submission assembly ─────────────────────────────────────
+  // ── Submission assembly ─────────────────────────────────────
   /** Assemble the current state into a V2 submission payload. */
   getSubmission(): V2Submission;
 
@@ -178,14 +173,14 @@ interface FormEngine {
 ```typescript
 interface NodeUIState {
   nodeId: string;
-  visible: boolean;     / controlled by SHOW/HIDE rules
-  required: boolean;    / controlled by SET_REQUIRED rules
-  disabled: boolean;    / controlled by DISABLE rules
-  errors: string[];     / validation error messages
+  visible: boolean;     // controlled by SHOW/HIDE rules
+  required: boolean;    // controlled by SET_REQUIRED rules
+  disabled: boolean;    // controlled by DISABLE rules
+  errors: string[];     // validation error messages
 }
 
 interface StateChangeEvent {
-  path: string;         / e.g., "values.visitdate" or "collections.medicines.01K693..."
+  path: string;         // e.g., "values.visitdate" or "collections.medicines.01K693..."
   value: unknown;
   previousValue: unknown;
 }
@@ -198,7 +193,6 @@ interface NodeUIStateChange {
 ```
 
 ---
-title: Form Engine
 
 ## 4. Rule Evaluation (Namespace Resolvers)
 
@@ -270,7 +264,6 @@ Namespace resolvers are **memoized** (cached until invalidated):
 This ensures rule evaluation is fast even with large forms.
 
 ---
-title: Form Engine
 
 ## 5. How Angular Components Use the Engine
 
@@ -345,25 +338,24 @@ const COMPONENT_MAP: Record<NodeType, Type<any>> = {
   'SelectOne':       SelectOneComponent,
   'SelectMulti':     SelectMultiComponent,
   'YesNo':           YesNoComponent,
-  / ...
+  // ...
 };
 ```
 
 Each node is rendered recursively: sections and repeaters render their `children`. Leaf fields render input controls.
 
 ---
-title: Form Engine
 
 ## 6. Collection (Repeater) Management
 
 ### Adding a Row
 
 ```typescript
-/ In RepeaterComponent
+// In RepeaterComponent
 onAddRow() {
   const newRowId = this.engine.addRow(this.node().binding);
-  / Engine creates: collections.medicines[newRowId] = {}
-  / Engine emits stateChange$ → Angular re-renders
+  // Engine creates: collections.medicines[newRowId] = {}
+  // Engine emits stateChange$ → Angular re-renders
 }
 ```
 
@@ -372,11 +364,11 @@ onAddRow() {
 For a `family_members` repeater nested inside `households`:
 
 ```typescript
-/ In the family_members RepeaterComponent, nested inside a households row
+// In the family_members RepeaterComponent, nested inside a households row
 onAddFamilyMember() {
   const parentRowId = this.currentHouseholdRowId();
   const newId = this.engine.addRow('family_members', parentRowId);
-  / Engine creates: collections.family_members[newId] = { _parent_id: parentRowId }
+  // Engine creates: collections.family_members[newId] = { _parent_id: parentRowId }
 }
 ```
 
@@ -385,13 +377,12 @@ onAddFamilyMember() {
 ```typescript
 onRemoveRow(rowId: string) {
   this.engine.removeRow(this.node().binding, rowId);
-  / Engine removes the row AND cascades to child collections
-  / (removes any family_members where _parent_id === rowId)
+  // Engine removes the row AND cascades to child collections
+  // (removes any family_members where _parent_id === rowId)
 }
 ```
 
 ---
-title: Form Engine
 
 ## 7. Validation
 
@@ -408,7 +399,6 @@ Validation runs automatically on every `setValue` / `setRowValue`. The `isValid(
 > **Hidden fields are NOT validated.** If a rule hides a field, its value is preserved in state but excluded from validation. This prevents "phantom required field" errors when rules hide conditional sections.
 
 ---
-title: Form Engine
 
 ## 8. Related Docs
 
@@ -416,4 +406,4 @@ title: Form Engine
 |---|---|
 | **Frontend architecture** (layers, modules, folder layout) | [Overview](overview.md) |
 | **Full V2 contract** (migration, ACL, history, all edge cases) | [V2 Contract](../_ideas/datarunapi/form_template_and_submission_v2_contract_discussion.md) ⚠️ Exploratory |
-| **Integration boundary** (how V2 relates to V1, downstream BCs) | [Integration Contract](../../architecture/integration-contract-datarunapi.md) |
+| **Integration boundary** (how V2 relates to V1, downstream BCs) | [Integration Contract](../../deprecated/legacy-technical-adapter-contract.md) |

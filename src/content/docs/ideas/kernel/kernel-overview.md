@@ -1,8 +1,6 @@
 ---
-title: Kernel Overview
+title: Shared Kernel
 ---
-
-# Shared Kernel — Overview
 
 ## Role in the Architecture
 

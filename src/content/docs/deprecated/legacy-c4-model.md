@@ -1,15 +1,12 @@
 ---
-title: C4 Model
+title: Legacy C4 Model
 ---
-
-# C4 Model — Datarun Platform
 
 > **Status:** Draft — Living Document
 > **Scope:** Cross-cutting — full system context
-> **Notation:** [C4 Model](https:/c4model.com/) rendered as Mermaid diagrams
+> **Notation:** [C4 Model](https://c4model.com/) rendered as Mermaid diagrams
 
 ---
-title: C4 Model
 
 ## Level 1 — System Context
 
@@ -39,7 +36,6 @@ graph TB
 > The LMIS Platform is **documented but not yet implemented**. DatarunAPI is the single operational system.
 
 ---
-title: C4 Model
 
 ## Level 2 — Container Diagram
 
@@ -76,7 +72,6 @@ graph TB
 **Legend:** Dashed borders = planned / not yet implemented.
 
 ---
-title: C4 Model
 
 ## Level 3 — Component Diagram: DatarunAPI
 
@@ -119,7 +114,6 @@ graph TB
 ```
 
 ---
-title: C4 Model
 
 ## Level 3 — Component Diagram: LMIS Platform (Future)
 
@@ -163,7 +157,6 @@ graph TB
 > **Level 4 (Code)** is intentionally omitted. During active refactoring, code-level diagrams become stale within days. Use `view_file_outline` and `view_code_item` tools to explore code structure on demand.
 
 ---
-title: C4 Model
 
 ## AI Agent Instructions
 
@@ -174,7 +167,6 @@ When loading this document:
 4. Cross-reference with [Context Map](context-map.md) for DDD relationship labels
 
 ---
-title: C4 Model
 
 ## Related Docs
 
@@ -182,5 +174,5 @@ title: C4 Model
 |-------|----------|
 | DDD Relationships | [Context Map](context-map.md) |
 | Strategic Vision | [Strategic Blueprint](strategic-blueprint.md) |
-| Integration Contract | [DatarunAPI Contract](integration-contract-datarunapi.md) |
+| Integration Contract | [DatarunAPI Contract](legacy-technical-adapter-contract.md) |
 | System Overview | [System Overview](system-overview.md) |

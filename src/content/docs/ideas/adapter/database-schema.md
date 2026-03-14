@@ -1,8 +1,6 @@
 ---
-title: Database Schema
+title: Adapter Database Schema
 ---
-
-# Adapter Database Schema
 
 ## Overview
 
@@ -39,7 +37,6 @@ CREATE INDEX idx_inbox_pending ON adapter_inbox (status) WHERE status IN ('RECEI
 Guarantees sub-millisecond polling in tables with millions of forwarded/failed rows. Includes `MAPPED` because the Layer 3 egress worker polls for both `MAPPED` and `RETRY_EGRESS` rows.
 
 ---
-title: Database Schema
 
 ### `adapter_crosswalks` — The Dictionary
 
@@ -65,7 +62,6 @@ UNIQUE (namespace, source_value)
 **Deactivation Semantics:** When a node is deactivated in the Shared Kernel (e.g., clinic closed), the corresponding crosswalk entry should be set to `is_active = FALSE` rather than deleted. This preserves audit history while preventing new payloads from mapping to retired entities.
 
 ---
-title: Database Schema
 
 ### `mapping_contracts` — The Rule Store
 
@@ -84,7 +80,6 @@ Stores the pure JSON DSL that powers the transformation engine.
 | `created_at` | Timestamp | Record creation time |
 
 ---
-title: Database Schema
 
 ### `adapter_egress_logs` — The Delivery Audit Trail
 
@@ -105,7 +100,6 @@ Immutable record of every Layer 3 delivery attempt.
 | `created_at` | Timestamp | When the delivery attempt was logged |
 
 ---
-title: Database Schema
 
 ### `adapter_admin_jobs` — Bulk Operation Tracker
 

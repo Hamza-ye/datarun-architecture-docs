@@ -2,8 +2,6 @@
 title: Idempotency Guard
 ---
 
-# Idempotency Guard (Area B)
-
 ## Purpose
 
 Before the Ledger looks at a command, the Idempotency Guard checks the registry. If it has seen the `source_event_id` before, it immediately stops to prevent double-counting.

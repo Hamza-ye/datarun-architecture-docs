@@ -2,8 +2,6 @@
 title: Node Registry
 ---
 
-# Node Registry (Supply Node Topology)
-
 ## Purpose
 
 Nodes represent any physical or logical location capable of holding stock: National Warehouses, Clinics, Mobile Teams.

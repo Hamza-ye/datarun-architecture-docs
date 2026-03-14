@@ -1,15 +1,12 @@
 ---
-title: Edge Case Failure Survivability Review
+title: Failure Survivability Review
 ---
-
-# Edge Case & Failure Survivability Review
 
 This document explores the domain survivability of the Modular Monolith under extreme duress, configuration drift, temporal edge cases, and concurrency faults. We are prioritizing "Model Survivability" over speed. 
 
 The core premise: **Can every business error be corrected without deleting history?**
 
 ---
-title: Edge Case Failure Survivability Review
 
 ## 1. Adapter & Dead Letter Queue (DLQ)
 **What invariant must never break?**
@@ -22,7 +19,6 @@ Strict Pydantic Validation bounds the output of the Adapter (`LedgerCommand` sch
 Because the original dirty payload is stored in `adapter_inbox` with `status=ERROR` alongside the DLQ trace, an administrator can fix the `MappingContract` DSL, test it, and use the Replay API to push the identical payload through the fixed mapper. No data is lost.
 
 ---
-title: Edge Case Failure Survivability Review
 
 ## 2. Idempotency Guard (Area B)
 **What invariant must never break?**
@@ -35,7 +31,6 @@ The `source_event_id` is a strictly enforced `UNIQUE` constraint in `ledger_idem
 If a client *re-uses* an old ID for a brand new transaction (a client-side bug), the system rejects it as a duplicate. To recover, the client system must be instructed to generate a new UUID for the new transaction. The Ledger's integrity is never compromised.
 
 ---
-title: Edge Case Failure Survivability Review
 
 ## 3. Approval Gatekeeper (Area E)
 **What invariant must never break?**
@@ -48,7 +43,6 @@ Policy definitions are evaluated at the moment of *ingestion*, not resolution. T
 If a transaction is accidentally approved (e.g. by a malicious actor), it flushes into the Immutable Event Store. To correct it, the system requires a symmetrical `REVERSAL` transaction linked to the offending `source_event_id`. History shows: Staged -> Approved -> Reversal applied. Perfect audit trail.
 
 ---
-title: Edge Case Failure Survivability Review
 
 ## 4. Immutable Event Store & Balances (Area C)
 **What invariant must never break?**
@@ -64,7 +58,6 @@ Worker B's transaction throws a `StaleDataError` (Integrity Exception). Worker B
 If a bug allowed a negative balance, we cannot `UPDATE` the past event. We must append a new `ADJUSTMENT` event to force the balance back to a known good state, documenting the reason in the `metadata`.
 
 ---
-title: Edge Case Failure Survivability Review
 
 ## 5. Shared Kernel & Topology (Area F)
 **What invariant must never break?**
@@ -78,7 +71,6 @@ If an admin typos a hierarchy change that breaks future mapping, they can fix it
 **Risk Flag:** We will need an Administrative "Historical Topology Correction" API or DBA script to safely alter `valid_from / valid_to` bounds for late-reported hierarchy changes.
 
 ---
-title: Edge Case Failure Survivability Review
 
 ## 6. In-Transit Registry (Area D)
 **What invariant must never break?**

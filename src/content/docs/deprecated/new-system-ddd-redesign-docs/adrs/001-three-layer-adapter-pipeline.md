@@ -1,8 +1,6 @@
 ---
-title: 001 Three Layer Adapter Pipeline
+title: "ADR: 3-Layer Adapter Pipeline"
 ---
-
-# ADR: 3-Layer Adapter Pipeline (Ingestion, Transformation, Egress)
 
 ## Status
 Accepted

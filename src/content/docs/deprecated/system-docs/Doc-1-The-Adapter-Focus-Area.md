@@ -1,8 +1,6 @@
 ---
-title: Doc 1 The Adapter Focus Area
+title: The Adapter Focus Area
 ---
-
-### The Strategy: The Asynchronous "Store, Cleanse & Forward" Pipeline
 
 We are building a truly decoupled system, **the Adapter and the Ledger share zero database tables.** They do not share a "Master Data" database, or shared module db the ledger uses. They are completely blind to each other’s internal states.
 
@@ -31,7 +29,6 @@ The Ledger has its own isolated `commodity_registry`. It only contains the pure 
 The Ledger knows absolutely nothing about `PARAM-BOX-50`.
 
 ---
-title: Doc 1 The Adapter Focus Area
 
 ### The Error Correction Loop (The Unified Inbox Replay)
 
@@ -50,7 +47,6 @@ Because they are perfectly decoupled, the adapter relies on **Contracts and a Un
 6. **Success:** The Adapter processes it again. This time it does the math, sends `{ "item_id": "PARAM-01", "quantity": 200 }`, and the Ledger responds `201 Created`. The new Inbox row is marked `FORWARDED`.
 
 ---
-title: Doc 1 The Adapter Focus Area
 
 ### Why this is the Ultimate Architecture
 
@@ -62,7 +58,6 @@ By enforcing this strict "fire and log" boundary:
 We have successfully walled off the Adapter. It is now a perfect, self-sufficient transformation engine.
 
 ---
-title: Doc 1 The Adapter Focus Area
 
 ### The Engine: Asynchronous "Store, Cleanse & Forward"
 
@@ -76,7 +71,6 @@ The pipeline does four asynchronous things:
 4. **Emit & Forward:** Construct the final Payload based on the configuration and POST it to the destination URL.
 
 ---
-title: Doc 1 The Adapter Focus Area
 
 ### The JSON Mapping Schema (The "A-to-B" Contract)
 
@@ -97,7 +91,6 @@ The schema is divided into **Environment** (Who am I?), **Ingress** (When do I r
 | `output_template` | `Array` | **Required** | The blueprint for one or more output commands. |
 
 ---
-title: Doc 1 The Adapter Focus Area
 
 ## 2. Resource & Error Definitions
 
@@ -118,7 +111,6 @@ This defines the behavior when a value (e.g., a Team ID) is not found in the dic
 4. **`REJECT`:** Throw a hard 400 error back to the source system immediately.
 
 ---
-title: Doc 1 The Adapter Focus Area
 
 ## 3. The Processing Engine (`processing_pipelines`)
 
@@ -137,7 +129,6 @@ A pipeline is an **ordered array** of operations. Each operation (`op`) takes an
 | **`case`** | `to`: `UPPER` or `LOWER` | Normalizes string casing. |
 
 ---
-title: Doc 1 The Adapter Focus Area
 
 ## 4. Execution Blueprint (`output_template`)
 
@@ -157,7 +148,6 @@ Every field within the template can be defined in one of three ways:
 * **`fields`**: A sub-template applied to every object in that array.
 
 ---
-title: Doc 1 The Adapter Focus Area
 
 ## 5. Formal Schema Example (The "Code-Ready" Version)
 
@@ -172,7 +162,7 @@ title: Doc 1 The Adapter Focus Area
   },
 
   "destination": {
-    "url": "https:/api.internal/ledger/v1/commands",
+    "url": "https://api.internal/ledger/v1/commands",
     "method": "POST"
   },
 
@@ -214,7 +204,7 @@ title: Doc 1 The Adapter Focus Area
 }
 
 ```
-**[Check out a sample source events and their mapping Examples](../adapter-source-events-examples/about_samples.md)**
+**[Check out a sample source events and their mapping Examples](/system-docs/adapter-source-events-examples/about_samples.md)**
 
 ### Why this DSL Design is Battle-Tested
 
@@ -257,7 +247,6 @@ The Adapter doesn't intrinsically know what a `STOCK_COUNT` is. It only knows th
 Field apps are notorious for sending dates as `22-02-2026` or `02/22/26`. The Destination must **strictly** accept only one format (e.g., ISO-8601 `YYYY-MM-DD`). The Adapter takes on the burden of translating human-readable dates into database-friendly dates.
 
 ---
-title: Doc 1 The Adapter Focus Area
 
 ## Database schema for the Adapter (The Isolated Sub-System)
 
@@ -284,7 +273,6 @@ To prevent data loss when downstream systems are down, or when mapping rules are
 **The Workflow:** The Source POSTs to the Adapter. The Adapter saves to `adapter_inbox`. The Adapter immediately returns `HTTP 202 Accepted` to the Source. The Source disconnects. A background worker then picks up the `RECEIVED` row and starts the mapping process.
 
 ---
-title: Doc 1 The Adapter Focus Area
 
 ### 2. The Crosswalk Registry (Relational Table)
 
@@ -302,7 +290,6 @@ This table acts as the "External Dictionary" mentioned in your JSON contract. It
 | `created_at` | Timestamp | Record creation time. |
 
 ---
-title: Doc 1 The Adapter Focus Area
 
 ### 3. The Unified Inbox Strategy (Replacing the DLQ Table)
 
@@ -331,7 +318,6 @@ Stores the pure JSON DSL that powers the transformation engine.
 | `created_at` | Timestamp | Record creation time. |
 
 ---
-title: Doc 1 The Adapter Focus Area
 
 ### 4. The Integration Audit Trail (Run Logs)
 
@@ -352,7 +338,6 @@ Every time the Adapter attempts to map and forward a payload, it leaves a "bread
 > **Architect's Note:** If the Destination system rejects the payload, you don't blame the Source. You look in `adapter_logs`, read the `destination_response`, and adjust your mapping JSON accordingly.
 
 ---
-title: Doc 1 The Adapter Focus Area
 
 ### 5. Advanced Dead Letter Management (Replay Logic)
 
@@ -370,7 +355,6 @@ As outlined in the "Error Correction Loop" above, when an admin fixes a mapping 
 4. **Processing:** The asynchronous worker picks up the new `RECEIVED` row exactly as if it were a brand new submission from the source, guaranteeing that retries respect all idempotency and validation rules natively.
 
 ---
-title: Doc 1 The Adapter Focus Area
 
 ### 6. Mapping Lifecycle & Governance
 
@@ -391,7 +375,6 @@ When a user clicks "Activate" on `v1.1`, the system performs an atomic transacti
 > **Pro-Tip:** Never allow editing of an `ACTIVE` version. If you need a change, **Clone to DRAFT**, edit, and re-activate. This ensures that if you look at a log from 3 months ago, you can see exactly which mapping rules were in place at that moment.
 
 ---
-title: Doc 1 The Adapter Focus Area
 
 ### 7. Admin Job Tracking (The "Cleanup" Log)
 
@@ -404,7 +387,6 @@ When an admin reprocesses 500 records from the DLQ, you need a record of that **
 * **Why:** If an admin accidentally reprocesses the wrong batch, you need a way to identify which transactions were triggered by that specific manual action.
 
 ---
-title: Doc 1 The Adapter Focus Area
 
 ### Final Summary for your Adapter Doc
 

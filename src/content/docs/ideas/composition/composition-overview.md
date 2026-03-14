@@ -1,8 +1,6 @@
 ---
-title: Composition Overview
+title: Composition Layer
 ---
-
-# Composition Layer (BFF) — Overview
 
 ## Purpose
 

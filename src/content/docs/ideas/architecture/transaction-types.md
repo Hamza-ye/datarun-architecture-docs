@@ -2,8 +2,6 @@
 title: Transaction Types
 ---
 
-# Canonical Transaction Types
-
 ## Overview
 
 To maintain industry compatibility (GS1/OpenLMIS standards), the Ledger recognizes only these fixed transaction types. The Adapter's job is to map any external form submission into one of these canonical types.

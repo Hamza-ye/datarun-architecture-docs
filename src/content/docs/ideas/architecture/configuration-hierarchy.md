@@ -2,8 +2,6 @@
 title: Configuration Hierarchy
 ---
 
-# Configuration Hierarchy — Policy Resolution Engine
-
 ## Overview
 
 Professional supply-chain systems avoid configuration fatigue by resolving policies at runtime using an inheritance chain. The system checks from most-specific to least-specific, using the first non-null value found.

@@ -1,8 +1,6 @@
 ---
-title: Gateway_integration_contract
+title: Gateway Integration Contract
 ---
-
-# Gateway Integration Requirements & Gap Analysis 
 
 > **Context:** `datarunapi` (Data Capture)
 > **Target:** Integrating with the standalone Python *Delivery Engine Gateway*
@@ -23,19 +21,18 @@ The schema of this event must contain:
 {
   "event_id": "uuid-v4",
   "event_type": "SubmissionCreated",
-  "aggregate_id": "z3Ye07TDj7a", / The Submission UID
-  "correlation_id": "uuid-v4-from-client", / MUST be traced from the mobile app
-  "occurred_at": "2026-03-08T10:00:00.000Z", / Mobile device timestamp
-  "recorded_at": "2026-03-08T10:05:00.000Z", / Server DB lock timestamp
+  "aggregate_id": "z3Ye07TDj7a", // The Submission UID
+  "correlation_id": "uuid-v4-from-client", // MUST be traced from the mobile app
+  "occurred_at": "2026-03-08T10:00:00.000Z", // Mobile device timestamp
+  "recorded_at": "2026-03-08T10:05:00.000Z", // Server DB lock timestamp
   "payload": { 
-     / The ENTIRE V2 Normalized JSON Shape.
-     / The Gateway will NOT query DataRun for missing data.
+     // The ENTIRE V2 Normalized JSON Shape.
+     // The Gateway will NOT query DataRun for missing data.
   }
 }
 ```
 
 ---
-title: Gateway_integration_contract
 
 ## 2. Gap Analysis (What is currently missing in `datarunapi`)
 
@@ -61,7 +58,6 @@ At present, `datarunapi` is the only product in production. To support integrati
 - *Note:* This translation logic is part of the Anti-Corruption Layer (ACL) discussed in the core V2 Strategy docs.
 
 ---
-title: Gateway_integration_contract
 
 ## 3. Summary of Development Path
 

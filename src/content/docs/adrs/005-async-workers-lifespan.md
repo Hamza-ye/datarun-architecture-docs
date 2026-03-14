@@ -1,8 +1,6 @@
 ---
-title: 005 Async Workers Lifespan
+title: "ADR-005: Async Workers via Lifespan"
 ---
-
-# ADR-005: Async Background Tasks via FastAPI Application Lifespan
 
 > **⚠️ LMIS Platform ADR:** This decision was written for a planned downstream LMIS platform (Python/FastAPI) that has not been implemented. It may inform future architecture but does **not** constrain the current `datarunapi` (Java/Spring Boot) codebase.
 

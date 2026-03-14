@@ -1,13 +1,10 @@
 ---
-title: Doc 8 The Angular SPA Architecture
+title: Angular SPA Architecture
 ---
-
-# Arch-Doc 8: The Angular SPA Architecture
 
 This document defines the strict, production-grade architectural rules for the National LMIS Ledger Frontend. It serves as the absolute control plane for all UI development. If a requested UI feature violates these rules, it must be rejected or redesigned.
 
 ---
-title: Doc 8 The Angular SPA Architecture
 
 ## 1. Directory Structure & Bounded Contexts
 

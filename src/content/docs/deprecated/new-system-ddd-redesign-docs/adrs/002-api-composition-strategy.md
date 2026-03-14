@@ -1,8 +1,6 @@
 ---
-title: 002 Api Composition Strategy
+title: "ADR: API Composition Strategy"
 ---
-
-# ADR: API Composition Strategy (Backend-for-Frontend)
 
 ## Status
 Proposed

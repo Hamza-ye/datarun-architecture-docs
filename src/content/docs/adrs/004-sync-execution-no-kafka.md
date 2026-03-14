@@ -1,8 +1,6 @@
 ---
-title: 004 Sync Execution No Kafka
+title: "ADR-004: Synchronous Execution"
 ---
-
-# ADR-004: Synchronous Ledger Execution vs. Event Broker (Kafka)
 
 > **⚠️ LMIS Platform ADR:** This decision was written for a planned downstream LMIS platform (Python/FastAPI) that has not been implemented. It may inform future architecture but does **not** constrain the current `datarunapi` (Java/Spring Boot) codebase.
 

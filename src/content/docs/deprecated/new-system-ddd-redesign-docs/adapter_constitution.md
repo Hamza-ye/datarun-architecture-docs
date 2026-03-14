@@ -1,8 +1,6 @@
 ---
-title: Adapter_constitution
+title: Adapter Constitution
 ---
-
-# Adapter (ACL) Constitution — Datarun Health LMIS
 
 The Adapter (ACL) is a 3-Layer Event Gateway (Ingestion → Transformation → Egress) that translates Data-Collection payloads into Domain Commands and guarantees reliable delivery. Its scope is strictly structural translation.
 
@@ -28,7 +26,6 @@ VERSIONING:
 - Every mapping contract must be versioned and include `sample_in.json` and `expected_out.json` tests.
 
 ---
-title: Adapter_constitution
 
 
 ## ROLES & LIFECYCLE (CONCISE)
@@ -45,7 +42,6 @@ title: Adapter_constitution
 - REJECTED
 
 ---
-title: Adapter_constitution
 
 ## Mapping Contract Lifecycle — Minimal 
 
@@ -62,7 +58,6 @@ Unique (id, and version)
 - REJECTED
 
 ---
-title: Adapter_constitution
 
 ## Transitions & Guards
 
@@ -71,7 +66,6 @@ Guard:
 - `sample_in.json` and `expected_out.json` exist.
 
 ---
-title: Adapter_constitution
 
 ### REVIEW → APPROVED
 Guard:
@@ -79,14 +73,12 @@ Guard:
 - Test result metadata stored for this version.
 
 ---
-title: Adapter_constitution
 
 ### REVIEW → REJECTED
 Guard:
 - Rejection reason recorded.
 
 ---
-title: Adapter_constitution
 
 ### APPROVED → ACTIVE
 Guards:
@@ -96,7 +88,6 @@ Guards:
   - Or activation is blocked until no other `ACTIVE` exists.
 
 ---
-title: Adapter_constitution
 
 ### ACTIVE → DEPRECATED
 Guard:
@@ -104,14 +95,12 @@ Guard:
 - `Deprecated` versions remain valid for replay.
 
 ---
-title: Adapter_constitution
 
 ### DEPRECATED → ARCHIVED
 Guard:
 - `Archived` versions are read-only and removed from active UI (kept for audit).
 
 ---
-title: Adapter_constitution
 
 ## Rollback
 
@@ -123,7 +112,6 @@ Rules:
 - Previously processed events are NOT reprocessed automatically.
 
 ---
-title: Adapter_constitution
 
 ## Replay
 
@@ -138,7 +126,6 @@ Rules:
 - Replay results must be traceable and logged with inherited `correlation_id`.
 
 ---
-title: Adapter_constitution
 
 ## Ingestion Binding Rule
 

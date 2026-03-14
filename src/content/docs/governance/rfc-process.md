@@ -1,8 +1,6 @@
 ---
-title: Rfc Process
+title: RFC Process
 ---
-
-# RFC Process
 
 > **Scope:** Cross-cutting
 > **Status:** Active
@@ -55,4 +53,4 @@ When an AI agent encounters an RFC reference:
 
 - [RFC Template](rfc-template.md)
 - [ADR Template](adr-template.md)
-- [Living Architecture Charter](README.md)
+- [Living Architecture Charter](index.md)

@@ -1,8 +1,6 @@
 ---
-title: Database Schema
+title: Ledger Database Schema
 ---
-
-# Ledger Database Schema
 
 ## Overview
 

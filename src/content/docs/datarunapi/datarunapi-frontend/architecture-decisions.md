@@ -1,8 +1,6 @@
 ---
-title: Architecture Decisions
+title: Frontend Architecture Decisions
 ---
-
-# DatarunAPI Frontend — Architecture Decisions & Implementation Plan
 
 > **Status:** Final Plan (Pre-Implementation)  
 > **Audience:** Frontend, Backend, Architecture  

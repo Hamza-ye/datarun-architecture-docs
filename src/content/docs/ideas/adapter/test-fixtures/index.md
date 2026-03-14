@@ -1,8 +1,6 @@
 ---
-title: Index
+title: Adapter Test Fixtures
 ---
-
-# Adapter Test Fixtures
 
 Cleaned source-event payloads and their corresponding mapping contracts. Each fixture is trimmed to 2 line items — enough to test iteration and crosswalk logic without bloating context.
 

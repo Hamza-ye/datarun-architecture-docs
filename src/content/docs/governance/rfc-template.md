@@ -1,8 +1,6 @@
 ---
-title: Rfc Template
+title: RFC Template
 ---
-
-# RFC-NNN: [Title]
 
 > **Status:** Draft | Under Review | Accepted | Rejected | Implemented | Superseded
 > **Author:** [Name / Agent ID]

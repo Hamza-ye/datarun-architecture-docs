@@ -2,8 +2,6 @@
 title: Commodity Registry
 ---
 
-# Commodity Registry
-
 ## Purpose
 
 The Ledger must never be confused about what a "Unit" is. The Commodity Registry provides canonical item definitions.

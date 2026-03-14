@@ -1,8 +1,6 @@
 ---
-title: Doc 1.1 The Adapter Area Source Event Examples Mappings
+title: Source Event Examples
 ---
-
-## Mapping Examples and source data samples
 supply nodes can be of types MU WH, HF, TEAM (mobile teams during temporary periodic campaigns), MOBILE WH (temporary WHs during campaigns) as a supply node.
 
 ### [hf_receipt_902](./adapter-source-events-examples/hf_receipt_902_example.json)
@@ -24,7 +22,7 @@ supply nodes can be of types MU WH, HF, TEAM (mobile teams during temporary peri
     "trigger_value": "z0xxGWenaov"
   },
   "destination": {
-    "url": "https:/api.internal/ledger/v1/commands",
+    "url": "https://api.internal/ledger/v1/commands",
     "method": "POST"
   },
   "dictionaries": {
@@ -67,10 +65,7 @@ supply nodes can be of types MU WH, HF, TEAM (mobile teams during temporary peri
 }
 ```
 
----
-title: Doc 1.1 The Adapter Area Source Event Examples Mappings
-
-### **[wh_stocktake_901](./adapter-source-events-examples/wh_stocktake_901_example%20(for%20MU%20stocktakes).json)**
+### **[wh_stocktake_901](.//adapter-source-events-examples/wh_stocktake_901_example%20(for%20MU%20stocktakes).json)**
 
 * the `orgunit` is the stocktake subject.
 * the incoming line events doesn't specify UOMs, but they are at the base unit, except for RDT wich is in packs of 25 units.
@@ -88,7 +83,7 @@ This handles the periodic counts, specifically using the orgUnit as the subject 
     "trigger_value": "QBVcGxiko2q"
   },
   "destination": {
-    "url": "https:/api.internal/ledger/v1/commands",
+    "url": "https://api.internal/ledger/v1/commands",
     "method": "POST"
   },
   "dictionaries": {

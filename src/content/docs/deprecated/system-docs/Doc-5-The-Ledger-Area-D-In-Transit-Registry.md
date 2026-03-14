@@ -1,15 +1,12 @@
 ---
-title: Doc 5 The Ledger Area D In Transit Registry
+title: "Area D: In-Transit Registry"
 ---
-
-# Area D: The In-Transit Registry
 
 Area D is where we solve the "Black Hole" problem in logistics: stock that has left the Warehouse but hasn't yet arrived at the Clinic.
 
 In a basic system, a transfer is just minus here, plus there. In a **battle-tested** system, Area D ensures that stock is accounted for even while it's on a truck. It manages the **state machine** of a movement across time.
 
 ---
-title: Doc 5 The Ledger Area D In Transit Registry
 
 ### 1. The In-Transit Registry Schema
 
@@ -44,7 +41,6 @@ This is the "Work-in-Progress" table. It tracks every open transfer until it is 
 | `created_at` | `Timestamp` | When the failure occurred. |
 
 ---
-title: Doc 5 The Ledger Area D In Transit Registry
 
 ### 2. The Multi-Step Transfer Flow
 
@@ -70,7 +66,6 @@ Area D orchestrates how Areas B, E, and C interact during a movement.
 
 
 ---
-title: Doc 5 The Ledger Area D In Transit Registry
 
 ### 3. The "Auto-Confirm" Logic (Closing the Loop)
 
@@ -102,7 +97,6 @@ What happens if the Orchestrator tries to auto-receive, but **Area C** rejects t
 
 
 ---
-title: Doc 5 The Ledger Area D In Transit Registry
 
 ### 4. Integration with the "Client" and "Approval"
 
@@ -110,7 +104,6 @@ title: Doc 5 The Ledger Area D In Transit Registry
 * **Approval Role:** If a "Receipt" shows a significant **Discrepancy** (e.g., Warehouse sent 100, Clinic received 20), **Area E** should intercept this for investigation before Area C is allowed to reconcile the loss.
 
 ---
-title: Doc 5 The Ledger Area D In Transit Registry
 
 ### 5. Summary of Area D Artifacts
 

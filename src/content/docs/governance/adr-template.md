@@ -1,8 +1,6 @@
 ---
-title: Adr Template
+title: ADR Template
 ---
-
-# ADR-NNN: [Short Title]
 
 > **Status:** Proposed | Accepted | Deprecated | Superseded by [ADR-XXX]
 > **Date:** YYYY-MM-DD

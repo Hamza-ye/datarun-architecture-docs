@@ -1,8 +1,6 @@
 ---
-title: Integration Contract Datarunapi
+title: Legacy Integration Contract
 ---
-
-# Integration Contract — DatarunAPI
 
 > **Status:** Draft — Living Document
 > **Ground Truth:** This document describes the actual DatarunAPI API surface. The `datarunapi` codebase is the sole authority.
@@ -12,21 +10,19 @@ title: Integration Contract Datarunapi
 This document defines what DatarunAPI **is** as an integration target — its identity, published language, authentication model, and versioning strategy. Any system consuming DatarunAPI's APIs or events must respect the contracts described here.
 
 ---
-title: Integration Contract Datarunapi
 
 ## DatarunAPI Identity
 
 | Property | Value |
 |---|---|
 | **DDD Role** | Open-Host Service (OHS) + Published Language (PL) |
-| **Codebase** | [DataRun-ye/data-run-api](https:/github.com/DataRun-ye/data-run-api) |
+| **Codebase** | [DataRun-ye/data-run-api](https://github.com/DataRun-ye/data-run-api) |
 | **Tech Stack** | Java, Spring Boot, PostgreSQL |
-| **Mobile Client** | [DataRun-ye/data-run-mobile](https:/github.com/DataRun-ye/data-run-mobile) (Flutter/Dart) |
+| **Mobile Client** | [DataRun-ye/data-run-mobile](https://github.com/DataRun-ye/data-run-mobile) (Flutter/Dart) |
 | **Deployment** | Independent server, separate DB, independent release cycle |
 | **Nature** | General-purpose data collection platform. Domain-agnostic. |
 
 ---
-title: Integration Contract Datarunapi
 
 ## Published Language (API Surface)
 
@@ -56,7 +52,6 @@ V2 was an exploratory effort to create normalized contracts decoupling data from
 > DatarunAPI's entities are **generic**. They carry no domain-specific meaning (no inventory, stock, or case vocabulary). Business meaning is assigned by downstream consumers.
 
 ---
-title: Integration Contract Datarunapi
 
 ## Authentication
 
@@ -79,7 +74,6 @@ DatarunAPI's JWT contains **identity only** (`sub`, `name`, generic roles). Doma
 Keycloak (or equivalent) replaces DatarunAPI as identity provider. Downstream authorization layers stay unchanged. See [ADR-008](../adrs/008-auth-phased-strategy.md).
 
 ---
-title: Integration Contract Datarunapi
 
 ## Versioning & Evolution
 
@@ -91,7 +85,6 @@ title: Integration Contract Datarunapi
 | **Schema discovery** | DatarunAPI should provide an OpenAPI spec. |
 
 ---
-title: Integration Contract Datarunapi
 
 ## Constraints & Known Limitations
 

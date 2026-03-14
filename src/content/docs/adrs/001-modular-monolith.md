@@ -1,8 +1,6 @@
 ---
-title: 001 Modular Monolith
+title: "ADR-001: Separation of Adapter and Ledger"
 ---
-
-# ADR-001: Separation of Adapter and Ledger via Modular Monolith
 
 > **⚠️ LMIS Platform ADR:** This decision was written for a planned downstream LMIS platform (Python/FastAPI) that has not been implemented. It may inform future architecture but does **not** constrain the current `datarunapi` (Java/Spring Boot) codebase.
 

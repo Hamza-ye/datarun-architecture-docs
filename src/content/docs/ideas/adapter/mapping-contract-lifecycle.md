@@ -2,8 +2,6 @@
 title: Mapping Contract Lifecycle
 ---
 
-# Mapping Contract Lifecycle
-
 ## Statuses
 
 | Status | Description |

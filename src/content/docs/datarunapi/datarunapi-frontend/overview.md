@@ -1,15 +1,12 @@
 ---
-title: Overview
+title: Frontend Overview
 ---
-
-# DatarunAPI Web Frontend — Architecture Overview
 
 > **Status:** Source of Truth  
 > **Last updated:** 2026-03-05  
 > **Audience:** Frontend developer building DatarunAPI's web application
 
 ---
-title: Overview
 
 ## 1. What This Frontend Is
 
@@ -31,7 +28,6 @@ The DatarunAPI Web Frontend is the web-based UI for the DatarunAPI data collecti
 - **No LMIS domain vocabulary** — this app knows "templates", "submissions", "assignments". It does not know "stock", "commodity", or "ledger"
 
 ---
-title: Overview
 
 ## 2. Architectural Position
 
@@ -58,7 +54,6 @@ Mobile App   This Frontend
 | **Authentication** | SSO via DatarunAPI's own JWT (RS256 + JWKS). See [Auth & Authorization](../../architecture/auth-and-authorization.md). |
 
 ---
-title: Overview
 
 ## 3. Tech Stack
 
@@ -71,7 +66,6 @@ title: Overview
 | **Styling** | Component-scoped CSS | Avoid global utility frameworks. Each component owns its styles. |
 
 ---
-title: Overview
 
 ## 4. Layer Structure (Clean Architecture)
 
@@ -150,7 +144,6 @@ src/app/
 4. **`shared/` components are dumb** — zero HTTP calls, zero service injection, zero state. `@Input()` in, `@Output()` out.
 
 ---
-title: Overview
 
 ## 5. Smart Container vs. Dumb Presenter Pattern
 
@@ -160,7 +153,6 @@ title: Overview
 | **Dumb Presenter** | `features/*/components/` and `shared/components/` | Pure rendering. Receives data, emits events. Highly reusable. | No | Never |
 
 ---
-title: Overview
 
 ## 6. API Contract
 
@@ -180,7 +172,6 @@ This frontend consumes **V2 REST endpoints only**:
 > Admin module uses V1 for template writes initially. This is acceptable because template write is an admin-only operation and the V1 endpoint remains stable. When V2 template write endpoints are built, Admin migrates — but this is internal to DatarunAPI and invisible to external consumers.
 
 ---
-title: Overview
 
 ## 7. Offline Support (Deferred)
 
@@ -191,7 +182,6 @@ The Form Engine is designed as a pure state machine with no infrastructure depen
 **When implemented:** The `SubmissionService` gains a second delivery path (IndexedDB queue) alongside the existing direct POST. The Form Engine API does not change.
 
 ---
-title: Overview
 
 ## 8. Related Docs
 
@@ -201,4 +191,4 @@ title: Overview
 | **V2 data contracts** | [V2 Contract](../../_ideas/datarunapi/form_template_and_submission_v2_contract_discussion.md) | When you need the full V2 spec (submission shape, template tree, rules, migration). ⚠️ Exploratory — not operational. |
 | **Auth & SSO** | [Auth & Authorization](../../architecture/auth-and-authorization.md) | When implementing login and guards |
 | **System context** | [Context Map](../../architecture/context-map.md) | When you need to understand how this app relates to LMIS |
-| **Integration boundary** | [Integration Contract](../../architecture/integration-contract-datarunapi.md) | When you need to understand V1/V2 coexistence |
+| **Integration boundary** | [Integration Contract](../../deprecated/legacy-technical-adapter-contract.md) | When you need to understand V1/V2 coexistence |

@@ -1,8 +1,6 @@
 ---
-title: Mapping Dsl Reference
+title: Mapping DSL Reference
 ---
-
-# Mapping DSL Reference
 
 ## Overview
 
@@ -89,7 +87,7 @@ Every field in the template can be defined in one of three ways:
 {
   "contract_info": { "id": "string", "version": "string", "status": "ACTIVE|DRAFT", "source_system": "string" },
   "ingress": { "trigger_path": "JsonPath", "trigger_value": "any" },
-  "destination": { "url": "https:/api.internal/ledger/v1/commands", "method": "POST" },
+  "destination": { "url": "https://api.internal/ledger/v1/commands", "method": "POST" },
   "dry_run": { "supported": true, "inject_path": "$.metadata.is_dry_run" },
   "dictionaries": {
     "external": { "name": { "namespace": "string", "on_unmapped": "DLQ|PASS_THROUGH|REJECT" } },

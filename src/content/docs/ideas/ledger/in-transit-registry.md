@@ -1,8 +1,6 @@
 ---
-title: In Transit Registry
+title: In-Transit Registry
 ---
-
-# In-Transit Registry (Area D)
 
 ## Purpose
 
@@ -84,14 +82,14 @@ Goods are regularly lost, stolen, or damaged in transit — especially in remote
 
 ### The Write-Off Flow
 
-1. A supervisor submits a `LedgerCommand` with `transaction_type: ADJUSTMENT`, `adjustment_reason: 'LOSS_IN_TRANSIT'`, and the `transfer_id` of the affected transfer.
-2. The Ledger API router detects this pattern (`ADJUSTMENT` + `LOSS_IN_TRANSIT` reason + `transfer_id` present) and routes to the In-Transit Registry's `process_loss()` method.
-3. The In-Transit Registry updates the transfer record status to `LOST_IN_TRANSIT`.
-4. The system generates a **zero-quantity** `ADJUSTMENT` event at the **source** node with `adjustment_reason: LOSS_IN_TRANSIT`.
+1.  A supervisor submits a `LedgerCommand` with `transaction_type: ADJUSTMENT`, `adjustment_reason: 'LOSS_IN_TRANSIT'`, and the `transfer_id` of the affected transfer.
+2.  The Ledger API router detects this pattern (`ADJUSTMENT` + `LOSS_IN_TRANSIT` reason + `transfer_id` present) and routes to the In-Transit Registry's `process_loss()` method.
+3.  The In-Transit Registry updates the transfer record status to `LOST_IN_TRANSIT`.
+4.  The system generates a **zero-quantity** `ADJUSTMENT` event at the **source** node with `adjustment_reason: LOSS_IN_TRANSIT`.
 
 > **Why zero-quantity?** The dispatch step already deducted the full `qty_shipped` from the source node's balance. Writing a negative adjustment here would **double-deduct**. The zero-quantity event preserves the audit trail (the loss is recorded as an event) without altering the balance that was already correctly reduced at dispatch.
 
-5. The `qty_shipped - qty_received` remainder is the written-off quantity, tracked at the **transfer registry level**.
+5.  The `qty_shipped - qty_received` remainder is the written-off quantity, tracked at the **transfer registry level**.
 
 > **Accounting Identity:** `qty_shipped = qty_received + qty_lost`. This identity is enforced by the In-Transit Registry record, not by duplicating deductions in the Event Store. A transfer cannot simply vanish.
 

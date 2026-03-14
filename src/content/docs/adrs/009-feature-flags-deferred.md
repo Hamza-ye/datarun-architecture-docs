@@ -1,10 +1,9 @@
 ---
-title: 009 Feature Flags Deferred
+title: "ADR-009: Feature Flags — Deferred"
 ---
 
-# ADR-009: Feature Flags — Deferred
-
-**Status:** Accepted  
+## Status
+Deferred
 **Date:** 2026-03-04  
 **Context:** Pre-production, single developer + single deployment
 

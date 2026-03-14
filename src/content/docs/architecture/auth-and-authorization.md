@@ -1,8 +1,6 @@
 ---
-title: Auth And Authorization
+title: Auth & Authorization
 ---
-
-# Authentication & Authorization
 
 > **Status:** Draft — Living Document
 > **Ground Truth:** The `datarunapi` Java codebase is the sole operational system.
@@ -15,7 +13,6 @@ Authentication is the number one reason "decoupled" systems accidentally become 
 > **Identity** (who are you?) is owned by **DatarunAPI**. **Authorization** (what can you do in a specific domain?) is owned by each downstream consumer. These concerns must never be conflated. See [ADR-008](../adrs/008-auth-phased-strategy.md).
 
 ---
-title: Auth And Authorization
 
 ## 1. Authentication (Identity: "Who are you?")
 
@@ -42,7 +39,6 @@ DatarunAPI is the **single identity provider** for all systems:
 When user management complexity demands it, deploy Keycloak (or equivalent). DatarunAPI and all consumers become **Relying Parties** of the IdP. The identity/authorization split below remains unchanged — only the token source changes.
 
 ---
-title: Auth And Authorization
 
 ## 2. Identity vs. Authorization Split
 
@@ -74,7 +70,6 @@ Each consuming system maintains its **own authorization layer** in its own datab
 > This pattern is **phase-agnostic**. Whether the JWT comes from DatarunAPI (Phase 1) or Keycloak (Phase 2), only the token validation step changes. Authorization lookup and domain services remain untouched.
 
 ---
-title: Auth And Authorization
 
 ## 3. Design Principles
 
@@ -85,7 +80,6 @@ title: Auth And Authorization
 5. **Phase 2 migration is clean.** Keycloak replaces DatarunAPI as identity provider. Authorization layers stay unchanged.
 
 ---
-title: Auth And Authorization
 
 ## 4. Future: Permission Verbs (Deferred)
 
@@ -96,10 +90,9 @@ The current authorization model checks **role names** (nouns). A more extensible
 At current scale (single builder, single deployment), role-based checks are sufficient. The permission-verb model adds value when: (a) multiple teams need fine-grained access control, or (b) role definitions need to vary per deployment without code changes.
 
 ---
-title: Auth And Authorization
 
 ## Related Docs
 
 - [ADR-008: Auth Phased Strategy](../adrs/008-auth-phased-strategy.md)
 - [Context Map](context-map.md)
-- [Integration Contract — DatarunAPI](integration-contract-datarunapi.md)
+- [Integration Contract — DatarunAPI](../deprecated/legacy-technical-adapter-contract.md)

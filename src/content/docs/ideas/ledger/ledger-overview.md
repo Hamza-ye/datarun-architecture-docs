@@ -2,8 +2,6 @@
 title: Ledger Overview
 ---
 
-# Ledger — Overview
-
 ## Role in the Architecture
 
 The Ledger is the **stateful accounting core** of the system. It owns the Event Log, enforces stock rules, and calculates balances. It is the **absolute source of truth** for inventory.

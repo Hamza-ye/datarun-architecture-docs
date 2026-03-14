@@ -17,24 +17,18 @@ The `datarunapi` codebase is the single source of truth. All documentation below
 ## How to Use These Docs
 > **Do NOT load docs from `/_ideas/` or `/_deprecated/` unless explicitly asked.** Those contain conceptual explorations and outdated material that could mislead AI agents into enforcing non-existent constraints.
 
----
-title: Overview
-
 ## Quick Reference
 
 | Working On | Load These Docs |
 |------------|----------------|
 | **Strategic direction / North Star** | `architecture/strategic-blueprint.md` |
-| **System diagrams (C4)** | `architecture/c4-model.md` |
+| **System diagrams (C4)** | `deprecated/legacy-c4-model.md` |
 | **Process rules, templates** | `governance/` |
 | **Why a decision was made** | `adrs/` |
 | **Proposing a big change** | `rfcs/` + `governance/rfc-process.md` |
-| **DatarunAPI integration / V1/V2 contract** | `architecture/integration-contract-datarunapi.md` |
+| **DatarunAPI integration / V1/V2 contract** | `deprecated/legacy-technical-adapter-contract.md` |
 | **Authentication / SSO** | `architecture/auth-and-authorization.md` |
 | **DatarunAPI frontend architecture** | `datarunapi/datarunapi-frontend/` |
-
----
-title: Overview
 
 ## Folder Structure
 
@@ -46,10 +40,10 @@ title: Overview
 
 ### [`architecture/`](architecture/) — System Architecture
 - [Strategic Blueprint](architecture/strategic-blueprint.md) — North Star vision, phased transition, business capability map
-- [C4 Model](architecture/c4-model.md) — System Context, Container, and Component diagrams
+- [C4 Model](deprecated/legacy-c4-model.md) — System Context, Container, and Component diagrams
 - [System Overview](architecture/system-overview.md) — What DatarunAPI is, core entities, external systems
 - [Context Map](architecture/context-map.md) — DDD strategic relationships (operational + directional)
-- [Integration Contract — DatarunAPI](architecture/integration-contract-datarunapi.md) — V1/V2 API boundary, auth channels, versioning
+- [Integration Contract — DatarunAPI](deprecated/legacy-technical-adapter-contract.md) — V1/V2 API boundary, auth channels, versioning
 - [Auth & Authorization](architecture/auth-and-authorization.md) — JWKS, JWT, SSO strategy
 
 ### [`adrs/`](adrs/) — Architectural Decision Records
@@ -77,9 +71,6 @@ title: Overview
   - [Overview](datarunapi/datarunapi-frontend/overview.md) — Architecture, modules, layers
   - [Form Engine Contract](datarunapi/datarunapi-frontend/form-engine.md) — Headless engine API
   - [Architecture Decisions](datarunapi/datarunapi-frontend/architecture-decisions.md)
-
----
-title: Overview
 
 ## Archived Docs
 

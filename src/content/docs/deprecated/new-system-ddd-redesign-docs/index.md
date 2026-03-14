@@ -1,8 +1,6 @@
 ---
-title: Overview
+title: Redesign Vision
 ---
-
-# SYSTEM OVERALL VISION
 We are building a **domain-oriented ingestion platform** around a shared Data-Collection backbone. The system will translate field observations into canonical artifacts consumed by independent bounded contexts (Ledger, Inventory, CaseMgmt, etc.). The translation layer is purposely narrow and auditable; it may be realized as an Anti-Corruption Layer inside a downstream context, as a shared Event Gateway between contexts, or as a hybrid. We will evaluate those alternatives pragmatically as the platform and team evolve.
 
 ## Domain Ecosystem Overview
@@ -10,7 +8,6 @@ We are building a **domain-oriented ingestion platform** around a shared Data-Co
 This project designs a **domain ecosystem around a shared Data-Collection backbone**, not merely “an adapter.” The system integrates generalized, evolving form-based collection with multiple independent domain services (Ledger, Case Management, Inventory, etc.), each owning UI, roles, storage, and domain logic, while exchanging information through shared events and a common operational context.
 
 ---
-title: Overview
 
 ## 1 — What is being built (industry terms)
 
@@ -33,7 +30,6 @@ Not intended:
 This is internal domain infrastructure.
 
 ---
-title: Overview
 
 ## 2 — Core architectural pattern
 
@@ -51,14 +47,12 @@ Key patterns in use or under consideration:
 These are established, battle-tested patterns; the design follows them rather than inventing new paradigms.
 
 ---
-title: Overview
 
 ## 3 — Adapter’s role in the architecture
 
 The adapter functions as an **Anti-Corruption Layer (ACL)** between flexible Data-Collection inputs and strict domain services. Its responsibilities are translation, normalization, and reliable delivery. ACL implementations are typically custom to the domain and are rarely generic, off-the-shelf replacements.
 
 ---
-title: Overview
 
 ## 4 — Two different ambitions (clarified)
 
@@ -75,7 +69,6 @@ Two distinct ambitions are possible and must be kept separate:
 * This approach maps to products like NiFi, Camel, MuleSoft and often becomes overwhelming for small teams. *Probability of becoming burdensome: 85%*
 
 ---
-title: Overview
 
 ## 5 — UI composition concerns
 
@@ -88,7 +81,6 @@ Required capabilities for UI composition:
 * Shared authentication and context propagation
 
 ---
-title: Overview
 
 ## 6 — Target architecture sketch
 
@@ -109,7 +101,6 @@ Each domain:
   This corresponds to an event-driven modular architecture rather than an iPaaS model.
 
 ---
-title: Overview
 
 ## 7 — Core question to resolve
 
@@ -121,7 +112,6 @@ Which is the primary outcome:
 Current evidence and design indicate the work is a **domain ecosystem**; in that case the DSL functions as a domain Anti-Corruption Layer rather than a generic integration framework.
 
 ---
-title: Overview
 
 ## 8 — Common concerns and reality check
 

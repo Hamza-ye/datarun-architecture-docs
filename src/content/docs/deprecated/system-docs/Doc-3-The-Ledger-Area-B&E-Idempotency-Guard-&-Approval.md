@@ -1,8 +1,6 @@
 ---
-title: Doc 3 The Ledger Area B&E Idempotency Guard & Approval
+title: "Area B: Idempotency Guard"
 ---
-
-# Area B: The Idempotency Guard
 
 Before the Ledger even looks at a command, it checks this registry. If it has seen the `source_event_id` before, it immediately stops to prevent double-counting.
 
@@ -20,7 +18,6 @@ Before the Ledger even looks at a command, it checks this registry. If it has se
 > **Architect's Note:** In a high-traffic system, this table must have a unique constraint on `source_event_id`. The database's unique index is your final line of defense against concurrent duplicate inserts.
 
 ---
-title: Doc 3 The Ledger Area B---E Idempotency Guard --- Approval
 
 ### Area E: The Approval Gatekeeper (The "Staging" Area)
 
@@ -54,7 +51,6 @@ If Area B says "This is new," the Ledger then evaluates the **Approval Policy**.
 | `occurred_at` | `Timestamp` | Exact moment of action. |
 
 ---
-title: Doc 3 The Ledger Area B---E Idempotency Guard --- Approval
 
 ### The "Gatekeeper" Logic Flow
 
@@ -76,7 +72,6 @@ title: Doc 3 The Ledger Area B---E Idempotency Guard --- Approval
 4. **Finalize (Post-Approval):** * When the supervisor clicks "Approve," the Ledger pulls the `payload` from `ledger_staged_commands` and pushes it to the **Event Store (Area C)**.
 
 ---
-title: Doc 3 The Ledger Area B---E Idempotency Guard --- Approval
 
 ### The "Reversal" Invariant (Handling Edited Forms)
 

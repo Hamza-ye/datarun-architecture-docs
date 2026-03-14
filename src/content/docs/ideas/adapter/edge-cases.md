@@ -1,8 +1,6 @@
 ---
-title: Edge Cases
+title: Adapter Edge Cases
 ---
-
-# Adapter Edge Cases & Failure Survivability
 
 ## Invariant
 No valid payload from an external system can be silently dropped, and no dirty/invalid payload can crash the main event loop.

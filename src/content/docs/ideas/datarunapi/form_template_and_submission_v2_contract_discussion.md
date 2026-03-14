@@ -1,8 +1,6 @@
 ---
-title: Form_template_and_submission_v2_contract_discussion
+title: Form V2 Contract Discussion
 ---
-
-# Form Template & Submission V2 Contract — Source of Truth
 
 > **Status:** DRAFT — under review  
 > **Owner:** Hamza Assada  
@@ -10,7 +8,6 @@ title: Form_template_and_submission_v2_contract_discussion
 > **Audience:** Backend, Frontend, Mobile, QA
 
 ---
-title: Form_template_and_submission_v2_contract_discussion
 
 ## Table of Contents
 
@@ -26,7 +23,6 @@ title: Form_template_and_submission_v2_contract_discussion
 10. [Appendix — Reference Files](#10-appendix--reference-files)
 
 ---
-title: Form_template_and_submission_v2_contract_discussion
 
 ## 1. Guiding Question
 
@@ -38,7 +34,6 @@ title: Form_template_and_submission_v2_contract_discussion
 > - The design is **resilient to future evolution**, so we don't build another brittle contract.
 
 ---
-title: Form_template_and_submission_v2_contract_discussion
 
 ## 2. Current State (V1) — What We Have
 
@@ -46,25 +41,25 @@ title: Form_template_and_submission_v2_contract_discussion
 
 | Entity | Table | Role |
 |---|---|---|
-| [`DataTemplate`](../../src/main/java/org/nmcpye/datarun/jpa/datatemplate/DataTemplate.java) | `data_template` | The form "type" — has a `uid`, `name`, and tracks the latest version number + uid. |
-| [`TemplateVersion`](../../src/main/java/org/nmcpye/datarun/jpa/datatemplate/TemplateVersion.java) | `data_template_version` | An immutable snapshot of a template at a version. Stores `fields` (JSONB `List<FormDataElementConf>`) and `sections` (JSONB `List<FormSectionConf>`), plus `options`. |
-| [`TemplateElement`](../../src/main/java/org/nmcpye/datarun/jpa/datatemplate/TemplateElement.java) | `template_element` | The **Canonical Element Registry** — one row per field per version. Carries `canonicalPath`, `canonicalElementId`, `jsonDataPath`, `dataType`, `semanticType`. Sections are **NOT** stored here; they are visual-only and live in the `TemplateVersion.sections` JSONB. |
-| [`DataSubmission`](../../src/main/java/org/nmcpye/datarun/jpa/datasubmission/DataSubmission.java) | `data_submission` | A single submission instance. Stores `formData` as an opaque JSONB blob, plus metadata (`form`, `formVersion`, `version`, `team`, `orgUnit`, `assignment`, etc.). Uses optimistic locking (`lockVersion`). |
+| [`DataTemplate`](..\..\src\main\java\org\nmcpye\datarun\jpa\datatemplate\DataTemplate.java) | `data_template` | The form "type" — has a `uid`, `name`, and tracks the latest version number + uid. |
+| [`TemplateVersion`](..\..\src\main\java\org\nmcpye\datarun\jpa\datatemplate\TemplateVersion.java) | `data_template_version` | An immutable snapshot of a template at a version. Stores `fields` (JSONB `List<FormDataElementConf>`) and `sections` (JSONB `List<FormSectionConf>`), plus `options`. |
+| [`TemplateElement`](..\..\src\main\java\org\nmcpye\datarun\jpa\datatemplate\TemplateElement.java) | `template_element` | The **Canonical Element Registry** — one row per field per version. Carries `canonicalPath`, `canonicalElementId`, `jsonDataPath`, `dataType`, `semanticType`. Sections are **NOT** stored here; they are visual-only and live in the `TemplateVersion.sections` JSONB. |
+| [`DataSubmission`](..\..\src\main\java\org\nmcpye\datarun\jpa\datasubmission\DataSubmission.java) | `data_submission` | A single submission instance. Stores `formData` as an opaque JSONB blob, plus metadata (`form`, `formVersion`, `version`, `team`, `orgUnit`, `assignment`, etc.). Uses optimistic locking (`lockVersion`). |
 
 ### 2.2 Template Version Snapshot POJOs (stored inside `TemplateVersion` JSONB)
 
 | POJO | Key properties |
 |---|---|
-| [`FormSectionConf`](../../src/main/java/org/nmcpye/datarun/datatemplateelement/FormSectionConf.java) | `name`, `path`, `order`, `label`, `rules[]`, `repeatable`, `categoryId`. **Note:** `getId()` returns `getName()`. |
-| [`FormDataElementConf`](../../src/main/java/org/nmcpye/datarun/datatemplateelement/FormDataElementConf.java) | `id` (unique element uid), `parent` (section name), `name`, `path`, `code`, `type`, `mandatory`, `optionSet`, `rules[]`, `validationRule`, etc. Has legacy compatibility shims for `constraint`, `constraintMessage`, `mainField`. |
-| [`AbstractElement`](../../src/main/java/org/nmcpye/datarun/datatemplateelement/AbstractElement.java) | Shared base: `parent`, `name`, `path`, `code`, `description`, `order`, `label`, `rules`, `properties`. |
+| [`FormSectionConf`](..\..\src\main\java\org\nmcpye\datarun\datatemplateelement\FormSectionConf.java) | `name`, `path`, `order`, `label`, `rules[]`, `repeatable`, `categoryId`. **Note:** `getId()` returns `getName()`. |
+| [`FormDataElementConf`](..\..\src\main\java\org\nmcpye\datarun\datatemplateelement\FormDataElementConf.java) | `id` (unique element uid), `parent` (section name), `name`, `path`, `code`, `type`, `mandatory`, `optionSet`, `rules[]`, `validationRule`, etc. Has legacy compatibility shims for `constraint`, `constraintMessage`, `mainField`. |
+| [`AbstractElement`](..\..\src\main\java\org\nmcpye\datarun\datatemplateelement\AbstractElement.java) | Shared base: `parent`, `name`, `path`, `code`, `description`, `order`, `label`, `rules`, `properties`. |
 
 ### 2.3 V1 REST Endpoints
 
 | Endpoint | Path | Purpose |
 |---|---|---|
-| [FormTemplateMergeResource](../../src/main/java/org/nmcpye/datarun/web/rest/v1/formtemplate/FormTemplateMergeResource.java) | `/api/v1/dataFormTemplates` | GET list/by-id, POST/PUT template+version as a merged DTO (`DataTemplateInstanceDto`). |
-| [DataSubmissionResource](../../src/main/java/org/nmcpye/datarun/web/rest/v1/datasubmission/DataSubmissionResource.java) | `/api/v1/dataSubmission` | GET/POST/DELETE submissions. Supports `?flatten=true`. Pre-processes by generating missing repeat row `_id`s via `MigrationRepeatIdGenerator`. |
+| [FormTemplateMergeResource](..\..\src\main\java\org\nmcpye\datarun\web\rest\v1\formtemplate\FormTemplateMergeResource.java) | `/api/v1/dataFormTemplates` | GET list/by-id, POST/PUT template+version as a merged DTO (`DataTemplateInstanceDto`). |
+| [DataSubmissionResource](..\..\src\main\java\org\nmcpye\datarun\web\rest\v1\datasubmission\DataSubmissionResource.java) | `/api/v1/dataSubmission` | GET/POST/DELETE submissions. Supports `?flatten=true`. Pre-processes by generating missing repeat row `_id`s via `MigrationRepeatIdGenerator`. |
 
 ### 2.4 V1 Data Shapes (Actual Samples)
 
@@ -104,7 +99,6 @@ title: Form_template_and_submission_v2_contract_discussion
 | **No canonical identity in data** | The submission `formData` uses `name`/`code` keys that can collide across sections. There's no guaranteed stable identity for analytics over version changes. |
 
 ---
-title: Form_template_and_submission_v2_contract_discussion
 
 ## 3. Design Principles & Non-Negotiables
 
@@ -139,7 +133,6 @@ These are the invariants that **must hold** across all V2 contracts. Any future 
 > V1 endpoints remain operational and unchanged. V2 endpoints run alongside. Both read/write through the **same canonical internal model** (normalized submission store). The ACL translates on ingest and on egress, in both directions.
 
 ---
-title: Form_template_and_submission_v2_contract_discussion
 
 ## 4. V2 Submission Contract
 
@@ -244,7 +237,6 @@ Sections (visual groupings) **do not appear** in the data payload. If a "Dosage 
 > The section is purely a UI rendering concern. The Template Tree (§5) carries section hierarchy for rendering; the data layer ignores it.
 
 ---
-title: Form_template_and_submission_v2_contract_discussion
 
 ## 5. V2 Template Tree Contract
 
@@ -335,7 +327,6 @@ Output: V2 Tree (root node with nested children)
 ```
 
 ---
-title: Form_template_and_submission_v2_contract_discussion
 
 ## 6. Behavior Engine (AST / Logic Broker)
 
@@ -425,7 +416,6 @@ We introduce three **contextual namespaces** that the frontend state manager res
 > If you ever change how the database stores data, you don't rewrite a single rule. You update the frontend's selector that resolves `$rel`.
 
 ---
-title: Form_template_and_submission_v2_contract_discussion
 
 ## 7. Anti-Corruption Layer (ACL)
 
@@ -472,7 +462,6 @@ Mobile (V1) ──► V1 REST ──► ACL ──► Canonical Model ──► 
 **Current recommendation:** Option A for simplicity. V1 read traffic is bounded (mobile offline sync is periodic), and the denormalization is O(N) in the number of fields — well within acceptable latency. Reassess if profiling shows otherwise.
 
 ---
-title: Form_template_and_submission_v2_contract_discussion
 
 ## 8. Migration Strategy — Phases
 
@@ -505,7 +494,6 @@ title: Form_template_and_submission_v2_contract_discussion
 - [ ] Once V1 traffic drops to zero, sunset V1 endpoints.
 
 ---
-title: Form_template_and_submission_v2_contract_discussion
 
 ## 9. Open Questions & Decision Log
 
@@ -520,14 +508,13 @@ title: Form_template_and_submission_v2_contract_discussion
 | Q7 | Validation errors: should V2 return structured field-level errors keyed by `binding`? | **OPEN** | Yes, proposed shape: `{ "errors": { "visitdate": ["required"], "collections.medicines.row_123.amd": ["invalid_option"] } }`. |
 
 ---
-title: Form_template_and_submission_v2_contract_discussion
 
 ## 10. Event Delivery & Provenance
 
 To maintain our DDD rules, `data-capture` does not communicate directly with external consumers (Analytics, Ledgers, etc.). It communicates exclusively with an independent **Application Gateway** using the **Transactional Outbox Pattern**.
 
 For the complete standalone design of the Delivery Engine mapping, dispatch, and Python architecture, see the dedicated Gateway product documentation:
-👉 **[Central Transformation & Delivery Engine Architecture](../gateway/README.md)**
+👉 **[Central Transformation & Delivery Engine Architecture](../gateway/index.md)**
 
 For details on exactly what `datarunapi` must build to integrate with this Gateway (e.g., the Outbox schema and missing provenance Tracking IDs), see the integration gap analysis:
 👉 **[Gateway Integration Contract & Gaps](gateway_integration_contract.md)**
@@ -541,23 +528,22 @@ As defined in the Gateway documentation, `data-capture` is required to generate 
 These fields must be included in the Fat Event that `data-capture` inserts into the `outbox_event` table upon submission.
 
 ---
-title: Form_template_and_submission_v2_contract_discussion
 
 ## 11. Appendix — Reference Files
 
 ### Entities & POJOs
-- [DataTemplate.java](../../src/main/java/org/nmcpye/datarun/jpa/datatemplate/DataTemplate.java)
-- [TemplateVersion.java](../../src/main/java/org/nmcpye/datarun/jpa/datatemplate/TemplateVersion.java)
-- [TemplateElement.java](../../src/main/java/org/nmcpye/datarun/jpa/datatemplate/TemplateElement.java)
-- [DataSubmission.java](../../src/main/java/org/nmcpye/datarun/jpa/datasubmission/DataSubmission.java)
-- [FormDataElementConf.java](../../src/main/java/org/nmcpye/datarun/datatemplateelement/FormDataElementConf.java)
-- [FormSectionConf.java](../../src/main/java/org/nmcpye/datarun/datatemplateelement/FormSectionConf.java)
-- [AbstractElement.java](../../src/main/java/org/nmcpye/datarun/datatemplateelement/AbstractElement.java)
+- [DataTemplate.java](..\..\src\main\java\org\nmcpye\datarun\jpa\datatemplate\DataTemplate.java)
+- [TemplateVersion.java](..\..\src\main\java\org\nmcpye\datarun\jpa\datatemplate\TemplateVersion.java)
+- [TemplateElement.java](..\..\src\main\java\org\nmcpye\datarun\jpa\datatemplate\TemplateElement.java)
+- [DataSubmission.java](..\..\src\main\java\org\nmcpye\datarun\jpa\datasubmission\DataSubmission.java)
+- [FormDataElementConf.java](..\..\src\main\java\org\nmcpye\datarun\datatemplateelement\FormDataElementConf.java)
+- [FormSectionConf.java](..\..\src\main\java\org\nmcpye\datarun\datatemplateelement\FormSectionConf.java)
+- [AbstractElement.java](..\..\src\main\java\org\nmcpye\datarun\datatemplateelement\AbstractElement.java)
 
 ### V1 REST Resources
-- [DataSubmissionResource.java](../../src/main/java/org/nmcpye/datarun/web/rest/v1/datasubmission/DataSubmissionResource.java)
-- [FormTemplateMergeResource.java](../../src/main/java/org/nmcpye/datarun/web/rest/v1/formtemplate/FormTemplateMergeResource.java)
+- [DataSubmissionResource.java](..\..\src\main\java\org\nmcpye\datarun\web\rest\v1\datasubmission\DataSubmissionResource.java)
+- [FormTemplateMergeResource.java](..\..\src\main\java\org\nmcpye\datarun\web\rest\v1\formtemplate\FormTemplateMergeResource.java)
 
 ### Sample Data
-- [V1 Template Version Sample](sample_data/template_version_v1_sample.json)
-- [V1 Submission Sample](sample_data/data_submission_v1_sample.json)
+- [V1 Template Version Sample](\sample_data\template_version_v1_sample.json)
+- [V1 Submission Sample](\sample_data\data_submission_v1_sample.json)

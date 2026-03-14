@@ -1,8 +1,6 @@
 ---
-title: Edge Cases
+title: Kernel Edge Cases
 ---
-
-# Kernel Edge Cases & Failure Survivability
 
 ## Invariant
 Configuration changes must not alter historical facts.

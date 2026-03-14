@@ -1,8 +1,6 @@
 ---
-title: Overview
+title: Transformation & Delivery Engine
 ---
-
-# Central Transformation & Delivery Engine (Gateway Product)
 
 > **Status:** Draft / Conceptual Architecture  
 > **Role:** Independent Data Product / Integration Bounded Context  
@@ -20,7 +18,6 @@ It is designed to be completely **agnostic of business logic**. It does not know
 By extracting this into its own Python-based product, we achieve total decoupling: when a downstream Ledger changes its API contract, the `data-capture` developers do not write a single line of code. The mapping configuration in the Gateway is simply updated.
 
 ---
-title: Overview
 
 ## 2. Core Responsibilities
 
@@ -38,7 +35,6 @@ title: Overview
 *   **It is not a Business Rule Engine:** It does not run form validations or check if a patient is eligible for a drug. It purely maps and routes data that is already valid and saved.
 
 ---
-title: Overview
 
 ## 3. High-Level Architecture
 
@@ -84,7 +80,6 @@ flowchart LR
 ```
 
 ---
-title: Overview
 
 ## 4. The Data Models (Config-Driven Engine)
 
@@ -97,7 +92,6 @@ The Gateway's internal database relies on the following core entities:
 5.  **`DeliveryAuditLog`:** Immutable record of every HTTP request made, storing the exact request body, headers, response status, and response body.
 
 ---
-title: Overview
 
 ## 5. Integration Contracts (What the Gateway Expects)
 

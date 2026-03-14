@@ -2,8 +2,6 @@
 title: Event Store
 ---
 
-# Event Store & Stock Projections (Area C)
-
 ## Purpose
 
 The mathematical heart of the system. Area C enforces stock rules, appends immutable events, and maintains the stock balance projections.
