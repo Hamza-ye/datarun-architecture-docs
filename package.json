@@ -1,0 +1,21 @@
+{
+  "name": "datarun-archticture-docs",
+  "version": "1.0.0",
+  "description": "> **Ground Truth:** The `datarunapi` codebase is the single source of truth. > All documentation below is **living, disposable guidance** — it can be rewritten when the code reality changes.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@astrojs/starlight": "^0.38.1",
+    "astro": "^6.0.4",
+    "sharp": "^0.34.5"
+  }
+}
