@@ -1,14 +1,26 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import mermaid from 'astro-mermaid';
 
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://hamza-ye.github.io',
 	base: '/datarun-architecture-docs/',
 	trailingSlash: 'always',
+	prefetch: {
+		prefetchAll: true,
+		defaultStrategy: 'viewport',
+	},
 	integrations: [
+		mermaid(),
 		starlight({
 			title: 'Datarun Architecture Docs',
+			expressiveCode: {
+				shikiConfig: {
+					// Add mermaid to excluded languages to let astro-mermaid handle it
+					langs: [],
+				},
+			},
 			sidebar: [
 				{
 					label: 'Architecture',
